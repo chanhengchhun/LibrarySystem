@@ -16,23 +16,11 @@ public class BooksController : ControllerBase
     };
     
     // CRUD Operations.
-
-    // Get
-    [HttpGet]
-    public ActionResult<IEnumerable<Book>> GetAll() => Ok(Books);
-
-    [HttpGet("{id}")]
-    public ActionResult<Book> GetById(int id)
-    {
-        var book = Books.FirstOrDefault(b => b.Id == id);
-        return book is null ? NotFound() : Ok(book);
-    }
     
-    // Post
+    // Post (Create)
     [HttpPost]
     public ActionResult<Book> Create(Book book)
     {
-        // create a new book with a unique Id (auto-increment)
         int newId;
         if (Books.Count == 0)
         {
@@ -46,8 +34,19 @@ public class BooksController : ControllerBase
         Books.Add(book);
         return CreatedAtAction(nameof(GetById), new { id = book.Id }, book);
     }
+
+    // Get (Read)
+    [HttpGet]
+    public ActionResult<IEnumerable<Book>> GetAll() => Ok(Books);
+
+    [HttpGet("{id}")]
+    public ActionResult<Book> GetById(int id)
+    {
+        var book = Books.FirstOrDefault(b => b.Id == id);
+        return book is null ? NotFound() : Ok(book);
+    }
     
-    // Put
+    // Put (Update)
     [HttpPut("{id}")]
     public ActionResult<Book> Update(int id, Book updatedBook)
     {
@@ -59,7 +58,7 @@ public class BooksController : ControllerBase
         return NoContent();
     }
 
-    // Delete
+    // Delete (Delete)
     [HttpDelete("{id}")]
     public ActionResult Delete(int id)
     {

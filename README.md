@@ -11,3 +11,7 @@
 ## Features (Functionalities)
 - Considering: User auth
 - 
+
+
+## Steps
+- Added CRUD Operations
