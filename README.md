@@ -6,7 +6,7 @@
 - (Considering) Frond end: Vuejs
 
 ## Oveview
-
+A library system + admin/librarian user & reguler user (book borower)
 
 ## Features (Functionalities)
 - Considering: User auth
@@ -15,3 +15,4 @@
 
 ## Steps
 - Added CRUD Operations
+- add User Model (Later will be used for login credential and track borowed books)

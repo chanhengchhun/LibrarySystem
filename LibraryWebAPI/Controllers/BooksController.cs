@@ -3,6 +3,7 @@ using LibraryWebAPI.Models;
 
 namespace LibraryWebAPI.Controllers;
 
+
 [ApiController]
 [Route("api/[controller]")]
 public class BooksController : ControllerBase
@@ -33,6 +34,35 @@ public class BooksController : ControllerBase
         book.Id = newId;
         Books.Add(book);
         return CreatedAtAction(nameof(GetById), new { id = book.Id }, book);
+    }
+
+    [HttpPost("{id}/checkout")]
+    public ActionResult<Book> CheckOut(int id, [FromBody] int userId)
+    {
+        var book = Books.FirstOrDefault(b => b.Id == id);
+        if (book is null) return NotFound("Book not found.");
+
+        if (!book.IsAvailable) return BadRequest("Book is already checked out.");
+
+        var user = UsersControllers.Users.FirstOrDefault(u => u.Id == userId);
+        if (user is null) return NotFound("User not found.");
+
+        book.IsAvailable = false;
+        book.CheckoutByUserId = userId;
+        return Ok(book);
+    }
+
+    [HttpPost("{id}/return")]
+    public ActionResult<Book> Return(int id)
+    {
+        var book = Books.FirstOrDefault(b => b.Id == id);
+        if (book is null) return NotFound("Book not found.");
+
+        if (book.IsAvailable) return BadRequest("Book is not checked out.");
+
+        book.IsAvailable = true;
+        book.CheckoutByUserId = null;
+        return Ok(book);
     }
 
     // Get (Read)
