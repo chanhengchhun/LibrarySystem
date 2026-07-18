@@ -16,3 +16,6 @@ A library system + admin/librarian user & reguler user (book borower)
 ## Steps
 - Added CRUD Operations
 - add User Model (Later will be used for login credential and track borowed books)
+- Add EF core and sqlite.
+
+## setup
