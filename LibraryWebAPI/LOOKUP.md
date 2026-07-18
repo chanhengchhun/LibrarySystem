@@ -1,3 +1,3 @@
 ## Command
-- `localhost:****/scalor/v1`: API UI test
+- `localhost:****/scalar/v1`: API UI test
 - 

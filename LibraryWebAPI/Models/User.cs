@@ -6,5 +6,4 @@ public class User
     public string Name { get; set; } = String.Empty;
     public string Email { get; set; } = String.Empty;
     public string PasswordHash { get; set; } = String.Empty; // Only for testing purposes now.
-    public string Role { get; set; } = String.Empty;
 }

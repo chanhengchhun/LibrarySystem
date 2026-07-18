@@ -12,8 +12,8 @@ public class UsersControllers : ControllerBase
     
     public static readonly List<User> Users = new()
     {
-        new User { Id = 1, Name = "Alice", Email = "alice@example.com", PasswordHash = "hashedpassword1", Role = "Member" },
-        new User { Id = 2, Name = "Bob", Email = "bob@example.com", PasswordHash = "hashedpassword2", Role = "Librarian" }
+        new User { Id = 1, Name = "Alice", Email = "alice@example.com", PasswordHash = "hashedpassword1" },
+        new User { Id = 2, Name = "Bob", Email = "bob@example.com", PasswordHash = "hashedpassword2" }
     };
     
     [HttpGet]
