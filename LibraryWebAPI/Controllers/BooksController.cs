@@ -17,9 +17,7 @@ public class BooksController : ControllerBase
         _dbContext = dbContext; // connection to the database
     }
     
-    
     // CRUD Operations.
-    
     // Post (Create)
     [HttpPost]
     public async Task<ActionResult<Book>> Create (Book book)
@@ -90,7 +88,5 @@ public class BooksController : ControllerBase
         _dbContext.Books.Remove(book);
         await _dbContext.SaveChangesAsync();
         return NoContent();
-        
     }
-
 }
