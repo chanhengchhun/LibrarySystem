@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LibraryWebAPI.Controllers;
 
-
 [ApiController]
 [Route("api/[controller]")]
 public class BooksController : ControllerBase
