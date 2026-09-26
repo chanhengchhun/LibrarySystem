@@ -17,17 +17,16 @@ public class BooksController : ControllerBase
     }
     
     // CRUD Operations.
-    // Post (Create)
+    // Add a new book.
     [HttpPost]
     public async Task<ActionResult<Book>> Create (Book book)
     {
         _dbContext.Books.Add(book);
         await _dbContext.SaveChangesAsync();
         return CreatedAtAction(nameof(GetById), new { id = book.Id }, book);
-
     }
 
-    // checkout
+    // Mark a book as checked out.
     [HttpPost("{id}/checkout")]
     public async Task<ActionResult<Book>> Checkout(int id)
     {
@@ -40,7 +39,7 @@ public class BooksController : ControllerBase
         return Ok(book);
     }
 
-    // return
+    // Return a checked-out book.
     [HttpPost("{id}/return")]
     public async Task<ActionResult<Book>> Return(int id)
     {
@@ -53,7 +52,7 @@ public class BooksController : ControllerBase
         return Ok(book);
     }
 
-    // Get (Read)
+    // Get all books.
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Book>>> GetAll() =>
         Ok(await _dbContext.Books.ToListAsync());
@@ -65,7 +64,7 @@ public class BooksController : ControllerBase
         return book is null ? NotFound("Book not found.") : Ok(book);
     }
     
-    // Put (Update)
+    // Update a book.
     [HttpPut("{id}")]
     public async Task<ActionResult<Book>> Update(int id, Book updatedBook)
     {
@@ -78,7 +77,7 @@ public class BooksController : ControllerBase
         return NoContent();
     }
 
-    // Delete (Delete)
+    // Delete a book.
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(int id)
     {
